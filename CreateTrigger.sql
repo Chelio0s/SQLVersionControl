@@ -37,11 +37,12 @@ VALUES
 ,@dataXML.value('(/EVENT_INSTANCE/EventType)[1]' ,'varchar(100)') --Ч тип изменени€
 ,@dataXML.value('(/EVENT_INSTANCE/TSQLCommand)[1]' ,'varchar(max)') --Ч полностью SQL команда
 ,GETDATE()
+,@dataXML
 ,(
  SELECT  dmec.client_net_address 
   FROM sys.sysprocesses sp 
   JOIN sys.dm_exec_connections dmec ON sp.spid = dmec.session_id
   WHERE sp.spid = @@SPID)
-, @dataXML
+
 ) --Ч во сколь изменено
 END
