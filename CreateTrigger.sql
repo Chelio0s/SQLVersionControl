@@ -1,26 +1,5 @@
-CREATE TABLE [dbo].[tbl_ListChange](
-[LoginName] [varchar](2000) NULL,
-[HostName] [varchar](100) NULL,
-[ObjectName] [varchar](100) NULL,
-[ObjectType] [varchar](100) NULL,
-[EventType] [varchar](100) NULL,
-[EventSQLCommand] [varchar](max) NULL,
-[EventTime] [datetime] NOT NULL,
-[XMLChange] [xml] NULL,
-[Id] [int] IDENTITY(1,1) NOT NULL,
-[IP_address] [nvarchar](50), null
-CONSTRAINT [PK_tbl_ListChange] PRIMARY KEY CLUSTERED
-(
-[Id] ASC
-)WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON, FILLFACTOR = 80) ON [PRIMARY]
-) ON [PRIMARY]
+ 
 
-GO
-
-EXEC sys.sp_addextendedproperty @name=N'MS_Description', @value=N'ѕолностью xml команда, содержаща€ все вообще ', @level0type=N'SCHEMA',@level0name=N'dbo', @level1type=N'TABLE',@level1name=N'tbl_ListChange', @level2type=N'COLUMN',@level2name=N'XMLChange'
-GO
-
---Ўаг второй: Ч триггер на базу:
 
 CREATE TRIGGER [tgr_DDLListChange]
 ON DATABASE
@@ -66,6 +45,3 @@ VALUES
 , @dataXML
 ) --Ч во сколь изменено
 END
-
-
-GO 
